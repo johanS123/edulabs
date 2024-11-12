@@ -1,1 +1,36 @@
-<p>home works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/posts"
+        (click)="sidenav.close()"
+        routerLinkActive="active-link"
+        >Posts</a
+      >
+      <a
+        mat-list-item
+        routerLink="/users"
+        (click)="sidenav.close()"
+        routerLinkActive="active-link"
+        >Usuarios</a
+      >
+      <a mat-list-item (click)="sidenav.close(); closeSesion()"
+        >Cerrar Sesión</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Barra superior con botón para abrir el menú -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ user.user }}</span>
+    </mat-toolbar>
+
+    <!-- Contenido principal de la aplicación -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

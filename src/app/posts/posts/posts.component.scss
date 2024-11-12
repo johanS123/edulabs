@@ -1,0 +1,44 @@
+.posts-header {
+  padding: 50px 50px 20px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.post-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.post-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.posts-container {
+  margin-top: 1rem;
+}
+
+.post-card {
+  margin-bottom: 1rem;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: #757575;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}

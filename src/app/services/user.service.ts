@@ -1,39 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IUser } from '../interfaces/user';
 
-interface BodyUsers {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  salt: string;
-  role: string;
-}
-
-const API_URL_USERS = `/Users`;
+const API_URL_USERS = `users`;
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  private apiUrl = `http://localhost:8000/api`;
   constructor(private http: HttpClient) {}
 
-  get() {
-    return this.http.get(`${API_URL_USERS}`);
+  getUsers() {
+    return this.http.get(`${this.apiUrl}/${API_URL_USERS}`);
   }
 
-  post(body: BodyUsers) {
-    return this.http.post(`${API_URL_USERS}`, body);
+  updateUsers(id: number, body: IUser) {
+    return this.http.put(`${this.apiUrl}/${API_URL_USERS}/${id}`, body);
   }
 
-  put(id: number, body: BodyUsers) {
-    body.id = id;
-    return this.http.put(`${API_URL_USERS}/${id}`, body);
-  }
-
-  delete(id: number) {
-    return this.http.delete(`${API_URL_USERS}/${id}`);
+  deleteUSers(id: number) {
+    return this.http.delete(`${this.apiUrl}/${API_URL_USERS}/${id}`);
   }
 }

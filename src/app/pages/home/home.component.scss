@@ -1,0 +1,27 @@
+.sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav-content {
+  padding: 20px;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-nav-list a {
+  text-decoration: none;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.active-link {
+  font-weight: bold;
+  color: #ff4081; /* Cambia este color al que prefieras */
+  border-bottom: 2px solid #ff4081; /* Línea bajo el enlace activo */
+}

@@ -1,1 +1,27 @@
-<p>users works!</p>
+<div class="user-table-container">
+  <h2>Bienvenido a la pagina de usuarios</h2>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- Columna: Nombre -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nombre
+      </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Columna: Email -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+    </ng-container>
+
+    <!-- Fila de encabezado -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <!-- Fila de datos -->
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

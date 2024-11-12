@@ -1,36 +1,95 @@
-<mat-card>
-  <mat-card-title> Login v6 </mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="loginForm" novalidate="novalidate" (ngSubmit)="login()">
-      <p>
-        <mat-form-field>
-          <input
-            type="text"
-            matInput
-            placeholder="Correo"
-            formControlName="email"
-          />
+<div class="login-container">
+  <mat-card class="login-card" *ngIf="hasAccount">
+    <mat-card-title>Iniciar Sesión</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            El email es requerido
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+            Formato de email no válido
+          </mat-error>
         </mat-form-field>
-      </p>
 
-      <p>
-        <mat-form-field>
-          <input
-            type="password"
-            matInput
-            placeholder="Password"
-            formControlName="password"
-          />
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password" required />
+          <mat-error
+            *ngIf="loginForm.controls['password'].hasError('required')"
+          >
+            La contraseña es requerida
+          </mat-error>
         </mat-form-field>
-      </p>
 
-      <!-- <p *ngIf="error" class="error">
-                {{ error }}
-            </p> -->
+        <span (click)="changeForm()">¿No tienes cuenta?</span>
 
-      <div class="button">
-        <button type="submit" mat-raised-button color="primary">Login</button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+        <div class="align-right">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!loginForm.valid"
+          >
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <!-- register form -->
+  <mat-card class="login-card" *ngIf="!hasAccount">
+    <mat-card-title>Registrarse</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" required />
+          <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
+            El nombre es requerido
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['name'].hasError('name')">
+            Formato de nombre no válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+          <mat-error
+            *ngIf="registerForm.controls['email'].hasError('required')"
+          >
+            El email es requerido
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+            Formato de email no válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password" required />
+          <mat-error
+            *ngIf="registerForm.controls['password'].hasError('required')"
+          >
+            La contraseña es requerida
+          </mat-error>
+        </mat-form-field>
+
+        <span (click)="changeForm()">ya tengo una cuenta</span>
+        <div class="align-right">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!registerForm.valid"
+          >
+            Registrarse
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,53 @@
+<h2>{{ getTitle() }}</h2>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <!-- Campo de Título -->
+    <div class="form-field">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" required />
+        <mat-error *ngIf="postForm.get('title')?.invalid"
+          >El título es requerido</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <!-- Campo de Categoría -->
+    <div class="form-field">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="postForm.get('category')?.invalid"
+          >La categoría es requerida</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Campo de Contenido -->
+  <div class="row">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Contenido</mat-label>
+      <textarea matInput formControlName="content" rows="5" required></textarea>
+      <mat-error *ngIf="postForm.get('content')?.invalid"
+        >El contenido es requerido</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="actions">
+    <button mat-button (click)="closeDialog()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="postForm.invalid"
+    >
+      {{ this.data.action }}
+    </button>
+  </div>
+</form>
