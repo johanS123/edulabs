@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IAuth } from '../interfaces/auth';
 import { IUser } from '../interfaces/user';
-
-const API_URL = `http://localhost:8000/api`;
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUser = { id: 1, name: 'Juan Pérez' };
+  private apiUrl = `${environment.apiUrl}`;
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -25,7 +24,7 @@ export class AuthService {
   }
 
   login(body: IAuth) {
-    return this.http.post(`${API_URL}/login`, body);
+    return this.http.post(`${this.apiUrl}/login`, body);
   }
 
   logout() {
@@ -55,6 +54,6 @@ export class AuthService {
   }
 
   register(body: IUser) {
-    return this.http.post(`${API_URL}/register`, body);
+    return this.http.post(`${this.apiUrl}/register`, body);
   }
 }

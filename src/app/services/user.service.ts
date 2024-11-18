@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/user';
+import { environment } from 'src/environments/environment';
 
 const API_URL_USERS = `users`;
 
@@ -8,7 +9,7 @@ const API_URL_USERS = `users`;
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = `http://localhost:8000/api`;
+  private apiUrl = `${environment.apiUrl}`;
   constructor(private http: HttpClient) {}
 
   getUsers() {

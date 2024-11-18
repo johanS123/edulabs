@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const API_URL_CATEGORY = `categories`;
 
@@ -7,7 +8,7 @@ const API_URL_CATEGORY = `categories`;
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = `http://localhost:8000/api`;
+  private apiUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) {}
 
